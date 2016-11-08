@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/ac_main_farmelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Hello World!"/>
+    <!--底部的按钮-->
+    <RadioGroup
+        android:id="@+id/ac_main_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/ac_main_recommend"
+            style="@style/AcMainRadioButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ac_main_rb_recommend"
+            />
+
+        <RadioButton
+            android:id="@+id/ac_main_forum"
+            style="@style/AcMainRadioButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ac_main_rb_forum"
+            />
+
+        <RadioButton
+            android:id="@+id/ac_main_select"
+            style="@style/AcMainRadioButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ac_main_rb_select"
+            />
+
+        <RadioButton
+            android:id="@+id/ac_main_found"
+            style="@style/AcMainRadioButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ac_main_rb_found"
+            />
+
+        <RadioButton
+            android:id="@+id/ac_main_mine"
+            style="@style/AcMainRadioButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ac_main_rb_mine"
+            />
+
+    </RadioGroup>
+</LinearLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--一级界面"我"-->
+    <dimen name="fra_mine_item_padding_horizontal">10dp</dimen>
+    <dimen name="fra_mine_item_padding_vertical">5dp</dimen>
+    <dimen name="fra_mine_item_margin_vertical">10dp</dimen>
+    <dimen name="fra_mine_login_height">30dp</dimen>
+    <dimen name="fra_mine_login_padding_vertical">20dp</dimen>
+</resources>

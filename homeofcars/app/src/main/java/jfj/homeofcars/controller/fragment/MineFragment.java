@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import jfj.homeofcars.R;
-import jfj.homeofcars.Utils.StaticValue;
 import jfj.homeofcars.Utils.SystemBrightnessUtil;
 import jfj.homeofcars.View.CircleDrawable;
 import jfj.homeofcars.controller.base.AbsBaseFragment;
@@ -52,9 +51,6 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
         userImg.setImageDrawable(circleBitmap);
         //调节亮度
         modeTv.setOnClickListener(this);
-        if (mBrightnessUtil.getSystemBrightness()<= StaticValue.BRIGHTNESS_VALUE) {
-            modeTv.setText("日间模式");
-        }
     }
 
     @Override
@@ -68,11 +64,12 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
                     if (mBrightnessUtil.isAutoBrightness()){
                         mBrightnessUtil.closeAutoBrightness();
                     }
-                    mBrightnessUtil.saveBrightness(StaticValue.BRIGHTNESS_VALUE);
+
                     //在这里将重新设置的这个亮度值存入到sp中
                     SharedPreferences sp=mContext.getSharedPreferences("appuse",MineFragment.this.getActivity().MODE_PRIVATE);
+                    mBrightnessUtil.saveBrightness(sp.getInt("original_brightness",254)/2);
                     SharedPreferences.Editor editor=sp.edit();
-                    editor.putInt("new_brightness",StaticValue.BRIGHTNESS_VALUE);
+                    editor.putInt("new_brightness",sp.getInt("original_brightness",254)/2);
                     editor.commit();
                 }else{
                     modeTv.setText("夜间模式");

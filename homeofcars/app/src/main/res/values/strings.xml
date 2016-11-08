@@ -21,5 +21,7 @@
     <string name="fra_forum_title_right">论坛</string>
     <string name="fra_forum_recommend">精选推荐</string>
     <string name="fra_forum_hot">24小时热帖</string>
+    <!--一级界面"发现"-->
+    <string name="fra_found_title_text">发现</string>
 
 </resources>

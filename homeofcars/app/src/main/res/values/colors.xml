@@ -3,6 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--总用-->
+    <color name="line_color">#e6e6e6</color>
     <!--一级界面"我"-->
     <color name="fra_mine_bg_color">#edecec</color>
     <color name="fra_mine_item_bg_color">#ffffff</color>

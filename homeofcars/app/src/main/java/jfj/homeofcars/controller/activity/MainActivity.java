@@ -48,6 +48,8 @@ public class MainActivity extends AbsBaseActivity {
         SharedPreferences.Editor editor=sp.edit();
         editor.putInt("original_brightness",mBrightnessUtil.getSystemBrightness());
         editor.commit();
+        //设置默认状态下的下方选中状态
+        recommendRb.setChecked(true);
         //初始状态下显示的fragment
         mFragmentTransaction.replace(R.id.ac_main_farmelayout,new RecommendFragment().newInstance());
         mFragmentTransaction.commit();

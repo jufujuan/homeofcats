@@ -11,6 +11,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Hello World!"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color"/>
     <!--底部的按钮-->
     <RadioGroup
         android:id="@+id/ac_main_radiogroup"

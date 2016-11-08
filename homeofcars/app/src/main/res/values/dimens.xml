@@ -8,4 +8,10 @@
     <dimen name="fra_mine_item_margin_vertical">10dp</dimen>
     <dimen name="fra_mine_login_height">30dp</dimen>
     <dimen name="fra_mine_login_padding_vertical">20dp</dimen>
+    <!--一级界面"发现"-->
+    <dimen name="fra_found_item_padding_horizontal">10dp</dimen>
+    <dimen name="fra_found_item_padding_vertical">5dp</dimen>
+    <dimen name="fra_found_item_margin_vertical">10dp</dimen>
+    <dimen name="fra_found_login_height">30dp</dimen>
+    <dimen name="fra_found_login_padding_vertical">20dp</dimen>
 </resources>

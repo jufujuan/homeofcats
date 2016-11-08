@@ -1,10 +1,12 @@
 package jfj.homeofcars.controller.activity;
 
+import android.content.SharedPreferences;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import jfj.homeofcars.R;
+import jfj.homeofcars.Utils.SystemBrightnessUtil;
 import jfj.homeofcars.controller.base.AbsBaseActivity;
 import jfj.homeofcars.controller.fragment.ForumFragment;
 import jfj.homeofcars.controller.fragment.FoundFragment;
@@ -18,6 +20,7 @@ public class MainActivity extends AbsBaseActivity {
     private RadioGroup mRadioGroup;
     private android.support.v4.app.FragmentManager mFragmentManager;
     private android.support.v4.app.FragmentTransaction mFragmentTransaction;
+    private SystemBrightnessUtil mBrightnessUtil;
 
 
     @Override
@@ -35,10 +38,17 @@ public class MainActivity extends AbsBaseActivity {
         mRadioGroup=bindView(R.id.ac_main_radiogroup);
         mFragmentManager=getSupportFragmentManager();
         mFragmentTransaction=mFragmentManager.beginTransaction();
+        mBrightnessUtil=new SystemBrightnessUtil(MainActivity.this);
     }
 
     @Override
     protected void initDatas() {
+        //将当前的屏幕亮度存储到sp
+        SharedPreferences sp=getSharedPreferences("appuse",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putInt("original_brightness",mBrightnessUtil.getSystemBrightness());
+        editor.commit();
+        //初始状态下显示的fragment
         mFragmentTransaction.replace(R.id.ac_main_farmelayout,new RecommendFragment().newInstance());
         mFragmentTransaction.commit();
         mRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -68,4 +78,45 @@ public class MainActivity extends AbsBaseActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SharedPreferences sp=getSharedPreferences("appuse",MODE_PRIVATE);
+        int newBrightness= sp.getInt("new_brightness",-1);
+        //恢复原来的屏幕亮度
+        if (newBrightness>0) {
+            mBrightnessUtil.saveBrightness(newBrightness);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sp=getSharedPreferences("appuse",MODE_PRIVATE);
+        int originalBrightness= sp.getInt("original_brightness",-1);
+        //恢复原来的屏幕亮度
+        if (originalBrightness>0) {
+            mBrightnessUtil.saveBrightness(originalBrightness);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences sp=getSharedPreferences("appuse",MODE_PRIVATE);
+        int originalBrightness= sp.getInt("original_brightness",127);
+        //恢复原来的屏幕亮度
+        mBrightnessUtil.saveBrightness(originalBrightness);
+    }
 }

@@ -19,6 +19,7 @@
             android:paddingBottom="@dimen/fra_mine_item_padding_vertical">
 
             <TextView
+                android:id="@+id/fra_mine_brightness_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fra_mine_night_text"

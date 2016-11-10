@@ -63,12 +63,21 @@ public class FoundBean {
             private String cardtype;
             private int datasource;
             private String description;
+            private int cType;
             /**
              * imageurl : http://app2.autoimg.cn/appdfs/g21/M04/70/F5/autohomecar__wKgFVVghZ_6Adt2kAACmCwiUTyM893.jpg
              * link : autohome://insidebrowser?url=http%3a%2f%2fm.1111.autohome.com.cn%2f%3fisapp%3d1%23pvareaid%3d104735
              */
 
             private List<DataBean> data;
+
+            public int getcType() {
+                return cType;
+            }
+
+            public void setcType(int cType) {
+                this.cType = cType;
+            }
 
             public String getCardtype() {
                 return cardtype;
@@ -105,6 +114,132 @@ public class FoundBean {
             public static class DataBean {
                 private String imageurl;
                 private String link;
+                private String title;
+                private String subtitle;
+                private String price;
+                private String currentprice;
+                private String subicontext;
+                private String shorttitle;
+                private String logo;
+                private String fctprice;
+                private String adinfo;
+                private String murl;
+                private String carlable;
+                private String state;
+                private String seriesname;
+                private int type;
+
+                public int getType() {
+                    return type;
+                }
+
+                public void setType(int type) {
+                    this.type = type;
+                }
+
+                public String getTitle() {
+                    return title;
+                }
+
+                public void setTitle(String title) {
+                    this.title = title;
+                }
+
+                public String getSubtitle() {
+                    return subtitle;
+                }
+
+                public void setSubtitle(String subtitle) {
+                    this.subtitle = subtitle;
+                }
+
+                public String getPrice() {
+                    return price;
+                }
+
+                public void setPrice(String price) {
+                    this.price = price;
+                }
+
+                public String getCurrentprice() {
+                    return currentprice;
+                }
+
+                public void setCurrentprice(String currentprice) {
+                    this.currentprice = currentprice;
+                }
+
+                public String getSubicontext() {
+                    return subicontext;
+                }
+
+                public void setSubicontext(String subicontext) {
+                    this.subicontext = subicontext;
+                }
+
+                public String getShorttitle() {
+                    return shorttitle;
+                }
+
+                public void setShorttitle(String shorttitle) {
+                    this.shorttitle = shorttitle;
+                }
+
+                public String getLogo() {
+                    return logo;
+                }
+
+                public void setLogo(String logo) {
+                    this.logo = logo;
+                }
+
+                public String getFctprice() {
+                    return fctprice;
+                }
+
+                public void setFctprice(String fctprice) {
+                    this.fctprice = fctprice;
+                }
+
+                public String getAdinfo() {
+                    return adinfo;
+                }
+
+                public void setAdinfo(String adinfo) {
+                    this.adinfo = adinfo;
+                }
+
+                public String getMurl() {
+                    return murl;
+                }
+
+                public void setMurl(String murl) {
+                    this.murl = murl;
+                }
+
+                public String getCarlable() {
+                    return carlable;
+                }
+
+                public void setCarlable(String carlable) {
+                    this.carlable = carlable;
+                }
+
+                public String getState() {
+                    return state;
+                }
+
+                public void setState(String state) {
+                    this.state = state;
+                }
+
+                public String getSeriesname() {
+                    return seriesname;
+                }
+
+                public void setSeriesname(String seriesname) {
+                    this.seriesname = seriesname;
+                }
 
                 public String getImageurl() {
                     return imageurl;

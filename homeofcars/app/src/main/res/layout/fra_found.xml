@@ -28,11 +28,13 @@
         android:layout_height="1dp"
         android:background="@color/line_color"/>
 
-    <ListView
-        android:id="@+id/fra_found_listView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fra_found_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

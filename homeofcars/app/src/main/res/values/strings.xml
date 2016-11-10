@@ -23,5 +23,10 @@
     <string name="fra_forum_hot">24小时热帖</string>
     <!--一级界面"发现"-->
     <string name="fra_found_title_text">发现</string>
+    <string name="item_found_activity_title_text">活动专区</string>
+    <string name="item_found_activity_subtitle_text">更多活动</string>
+    <string name="item_found_produce_title_text">商品列表</string>
+    <string name="item_found_time_gogo_title_text">限时抢购</string>
+    <string name="item_found_time_title_text">双11抢购</string>
 
 </resources>

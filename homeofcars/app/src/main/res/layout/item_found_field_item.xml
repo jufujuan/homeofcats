@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--发现界面焦点图-->
+<!--田字小号专区-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
-
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_found_field_item_img"/>
 </LinearLayout>

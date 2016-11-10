@@ -4,12 +4,14 @@
               android:orientation="vertical"
               android:gravity="center"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
    <ImageView
+       android:id="@+id/item_found_entrance_item_img"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:src="@mipmap/ahlib_common_fab_bg_normal"/>
    <TextView
+       android:id="@+id/item_found_entrance_item_tv"
        android:text="分类"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"/>

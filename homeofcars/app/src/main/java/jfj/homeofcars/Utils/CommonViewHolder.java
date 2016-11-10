@@ -1,13 +1,22 @@
 package jfj.homeofcars.Utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
+
+import jfj.homeofcars.model.net.VolleyImageResult;
+import jfj.homeofcars.model.net.VolleyInstance;
 
 /**
  * 一个通用的ViewHolder
@@ -117,6 +126,47 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
     public CommonViewHolder setImg(int resId, Bitmap bitmap){
         ImageView imageView=getView(resId);
         imageView.setImageBitmap(bitmap);
+        return this;
+    }
+    /**
+     * 为ImageView设置图片(重载)
+     * @param resId 控件Id
+     * @param imgUrl 需要设置的网络图片的网址
+     * @return
+     */
+    public CommonViewHolder setImg(int resId, final String imgUrl, final int width, final int height , final ScaleType scaleType, final Config config){
+        final ImageView imageView=getView(resId);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                VolleyInstance.getVolleyInstance().starImageRequest(imgUrl, width, height, scaleType, config, new VolleyImageResult() {
+                    @Override
+                    public void failure() {
+                        Log.d("CommonViewHolder", "获取图片失败");
+                    }
+
+                    @Override
+                    public void success(Bitmap resultStr) {
+                        imageView.setImageBitmap(resultStr);
+                    }
+                });
+            }
+        }).start();
+        return this;
+    }
+    public CommonViewHolder setRecyclerView(Context context,int count,int resId, RecyclerView.Adapter<CommonViewHolder> adpater){
+        RecyclerView recyclerView=getView(resId);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(context,count);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adpater);
+        return this;
+    }
+    public CommonViewHolder setRecyclerViewH(Context context,int count,int resId, RecyclerView.Adapter<CommonViewHolder> adpater){
+        RecyclerView recyclerView=getView(resId);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(context,count);
+        gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adpater);
         return this;
     }
 

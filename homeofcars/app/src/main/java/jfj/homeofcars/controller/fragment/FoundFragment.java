@@ -1,14 +1,15 @@
 package jfj.homeofcars.controller.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListView;
 
 import com.google.gson.Gson;
 
 import jfj.homeofcars.R;
 import jfj.homeofcars.Utils.StaticValue;
-import jfj.homeofcars.controller.adapter.listview.FoundFraLVAdapter;
+import jfj.homeofcars.controller.adapter.recyclerview.FoundFraRVAdapter;
 import jfj.homeofcars.controller.base.AbsBaseFragment;
 import jfj.homeofcars.model.bean.FoundBean;
 import jfj.homeofcars.model.net.VolleyInstance;
@@ -19,8 +20,8 @@ import jfj.homeofcars.model.net.VolleyResult;
  */
 public class FoundFragment extends AbsBaseFragment {
     private FoundBean mFoundBean;
-    private ListView mListView;
-    private FoundFraLVAdapter mFoundFraLVAdapter;
+    private RecyclerView mRecyclerView;
+    private FoundFraRVAdapter mAdapter;
 
     public static FoundFragment newInstance() {
 
@@ -38,10 +39,11 @@ public class FoundFragment extends AbsBaseFragment {
 
     @Override
     protected void initView() {
-        mListView = bindView(R.id.fra_found_listView);
+        mRecyclerView = bindView(R.id.fra_found_recyclerview);
         mFoundBean = new FoundBean();
-        mFoundFraLVAdapter = new FoundFraLVAdapter(mContext);
-
+        mAdapter=new FoundFraRVAdapter(mContext);
+        GridLayoutManager gridM=new GridLayoutManager(mContext,30);
+        mRecyclerView.setLayoutManager(gridM);
     }
 
     @Override
@@ -52,28 +54,67 @@ public class FoundFragment extends AbsBaseFragment {
                 VolleyInstance.getVolleyInstance().startJsonObjectRequest(StaticValue.URL_FOUND, new VolleyResult() {
                     @Override
                     public void success(String resultStr) {
-                        Log.d("FoundFragment", "发现界面网络数据获取成功");
+                        Log.d("aaa", "发现界面网络数据获取成功");
                         Gson gson = new Gson();
                         mFoundBean = gson.fromJson(resultStr, FoundBean.class);
-                        if (mFoundBean!=null){
-                            Log.d("FoundFragment", "发现界面网络数据解析成功");
-                        }else {
-                            Log.d("FoundFragment", "发现界面网络数据解析失败");
+                        if (mFoundBean != null) {
+                            Log.d("aaa", "发现界面网络数据解析成功");
+                        } else {
+                            Log.d("aaa", "发现界面网络数据解析失败");
                         }
-                        mFoundFraLVAdapter.setFoundBean(mFoundBean);
-                        mListView.setAdapter(mFoundFraLVAdapter);
+                        //将网络的到的bean进行调整
+                        mAdapter.setDatas(changeNetToMy(mFoundBean));
+                        mRecyclerView.setAdapter(mAdapter);
                     }
 
                     @Override
                     public void failure() {
-                        Log.d("FoundFragment", "发现界面网络数据获取失败");
+                        Log.d("aaa", "发现界面网络数据获取失败");
 
                     }
                 });
             }
+
+            /**
+             * 为网络得到的实体类添加type
+             * @param foundBean
+             * @return
+             */
+            public FoundBean changeNetToMy(FoundBean foundBean) {
+                int type = -1;
+                for (int i = 0; i < foundBean.getResult().getCardlist().size(); i++) {
+                    switch (i) {
+                        case 6:
+                            type = 3;
+                            break;
+                        case 7:
+                            type = 6;
+                            break;
+                        case 8:
+                            type = 3;
+                            break;
+                        case 9:
+                            type = 7;
+                            break;
+                        case 10:
+                            type = 7;
+                            break;
+                        case 11:
+                            type = 8;
+                            break;
+                        default:
+                            type = i;
+                            break;
+                    }
+                    foundBean.getResult().getCardlist().get(i).setcType(type);
+                    for (int j = 0; j <foundBean.getResult().getCardlist().get(i).getData().size() ; j++) {
+                        foundBean.getResult().getCardlist().get(i).getData().get(j).setType(type);
+                    }
+                }
+                return foundBean;
+            }
         }).start();
     }
-
 
 
 }

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--发现界面焦点图-->
+<!--焦点图(轮播图)-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/item_found_focus_banner"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+    </com.youth.banner.Banner>
 
 </LinearLayout>

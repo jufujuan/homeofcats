@@ -3,7 +3,7 @@
           package="jfj.homeofcars">
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:name=".myapp.MyApp"
         android:allowBackup="true"
@@ -17,6 +17,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".controller.activity.LoginActivity">
+
         </activity>
     </application>
 

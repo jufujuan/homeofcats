@@ -3,11 +3,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/bg_color"
               android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/item_bg_color">
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,13 +30,20 @@
         android:layout_height="1dp"
         android:background="@color/line_color"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fra_found_recyclerview"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/fra_found_swipeRefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fra_found_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/bg_color">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

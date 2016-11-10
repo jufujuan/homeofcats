@@ -6,6 +6,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
    <ImageView
+       android:padding="@dimen/fra_found_item_margin_big"
        android:id="@+id/item_found_entrance_item_img"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"

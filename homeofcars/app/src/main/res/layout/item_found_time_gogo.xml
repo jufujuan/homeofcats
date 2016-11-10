@@ -2,23 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="@color/item_bg_color"
               android:orientation="vertical">
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fra_found_item_blank_line_height"
+        android:background="@color/bg_color"/>
     <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
+            android:padding="@dimen/fra_found_item_margin_small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/item_found_time_gogo_title_text"/>
 
         <TextView
+            android:id="@+id/item_found_time_gogo_day_tv"
+            android:textColor="@color/colorWhiteText"
+            android:layout_margin="@dimen/fra_found_item_margin_small"
+            android:background="@drawable/fra_found_circle_rect"
+            android:layout_width="@dimen/fra_found_time_rect_height_and_width"
+            android:layout_height="@dimen/fra_found_time_rect_height_and_width"
+            />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这里放一个倒计时"/>
+            android:textSize="10sp"
+            android:text="天"
+            />
+        <TextView
+            android:id="@+id/item_found_time_gogo_hour_tv"
+            android:textColor="@color/colorWhiteText"
+            android:layout_margin="@dimen/fra_found_item_margin_small"
+            android:background="@drawable/fra_found_circle_rect"
+            android:layout_width="@dimen/fra_found_time_rect_height_and_width"
+            android:layout_height="@dimen/fra_found_time_rect_height_and_width"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text=":"
+            />
+        <TextView
+            android:id="@+id/item_found_time_gogo_minute_tv"
+            android:textColor="@color/colorWhiteText"
+            android:layout_margin="@dimen/fra_found_item_margin_small"
+            android:background="@drawable/fra_found_circle_rect"
+            android:layout_width="@dimen/fra_found_time_rect_height_and_width"
+            android:layout_height="@dimen/fra_found_time_rect_height_and_width"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text=":"
+            />
+        <TextView
+            android:id="@+id/item_found_time_gogo_second_tv"
+            android:textColor="@color/colorWhiteText"
+            android:layout_margin="@dimen/fra_found_item_margin_small"
+            android:background="@drawable/fra_found_circle_rect"
+            android:layout_width="@dimen/fra_found_time_rect_height_and_width"
+            android:layout_height="@dimen/fra_found_time_rect_height_and_width"/>
+
 
     </LinearLayout>
 
@@ -28,5 +80,9 @@
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fra_found_item_blank_line_height"
+        android:background="@color/bg_color"/>
 
 </LinearLayout>

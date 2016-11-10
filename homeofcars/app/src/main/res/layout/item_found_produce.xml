@@ -2,14 +2,20 @@
 <!--发现界面商品列表-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:background="@color/item_bg_color"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fra_found_item_blank_line_height"
+        android:background="@color/bg_color"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
+            android:padding="@dimen/fra_found_item_margin_small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

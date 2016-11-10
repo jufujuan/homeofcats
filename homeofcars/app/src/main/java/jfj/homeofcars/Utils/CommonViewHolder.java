@@ -15,6 +15,12 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
+import com.youth.banner.Banner;
+import com.youth.banner.Transformer;
+
+import java.util.List;
+
+import jfj.homeofcars.View.GlideImageLoader;
 import jfj.homeofcars.model.net.VolleyImageResult;
 import jfj.homeofcars.model.net.VolleyInstance;
 
@@ -154,6 +160,15 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         }).start();
         return this;
     }
+
+    /**
+     * 设置纵向的recyclerview
+     * @param context
+     * @param count
+     * @param resId
+     * @param adpater
+     * @return
+     */
     public CommonViewHolder setRecyclerView(Context context,int count,int resId, RecyclerView.Adapter<CommonViewHolder> adpater){
         RecyclerView recyclerView=getView(resId);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(context,count);
@@ -161,12 +176,46 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         recyclerView.setAdapter(adpater);
         return this;
     }
+
+    /**
+     * 设置横向的recyclerview
+     * @param context
+     * @param count
+     * @param resId
+     * @param adpater
+     * @return
+     */
     public CommonViewHolder setRecyclerViewH(Context context,int count,int resId, RecyclerView.Adapter<CommonViewHolder> adpater){
         RecyclerView recyclerView=getView(resId);
         GridLayoutManager gridLayoutManager=new GridLayoutManager(context,count);
         gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adpater);
+        return this;
+    }
+
+    /**
+     * 设置轮播图控件
+     * @return
+     */
+    public CommonViewHolder setBanner(int resId, int indicatorGravity, int time, int bannerStyle, List<String> images){
+        Banner banner=getView(resId);
+        //设置指示器位置（当banner模式中有指示器时）
+        banner.setIndicatorGravity(indicatorGravity);
+        //设置自动轮播，默认为true
+        banner.isAutoPlay(true);
+        //设置轮播时间
+        banner.setDelayTime(time);
+        //设置banner动画效果
+        banner.setBannerAnimation(Transformer.DepthPage);
+        //设置banner样式
+        banner.setBannerStyle(bannerStyle);
+        //设置图片加载器
+        banner.setImageLoader(new GlideImageLoader());
+        //设置图片集合
+        banner.setImages(images);
+        //banner设置方法全部调用完毕时最后调用
+        banner.start();
         return this;
     }
 

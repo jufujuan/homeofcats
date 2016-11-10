@@ -1,6 +1,7 @@
 package jfj.homeofcars.controller.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -64,5 +65,12 @@ public abstract class AbsBaseFragment extends Fragment{
     protected abstract void initView();
     //初始化数据
     protected abstract void initDatas();
+    /**
+     * 设置跳转(不带返回值)
+     * 在这里可以设置跳转动画
+     */
+    protected void goTo(Context context,Class<? extends AbsBaseActivity> to){
+        context.startActivity(new Intent(context,to));
+    }
 
 }

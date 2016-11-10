@@ -1,6 +1,10 @@
 package jfj.homeofcars.controller.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,8 +24,13 @@ import jfj.homeofcars.model.net.VolleyResult;
  */
 public class FoundFragment extends AbsBaseFragment {
     private FoundBean mFoundBean;
+    private FoundBean mNewFoundBean;
     private RecyclerView mRecyclerView;
     private FoundFraRVAdapter mAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private final static int THREAD_REFRESH=101;//下拉刷新的线程
+    private RefreshHandler mHandler;
+
 
     public static FoundFragment newInstance() {
 
@@ -41,79 +50,127 @@ public class FoundFragment extends AbsBaseFragment {
     protected void initView() {
         mRecyclerView = bindView(R.id.fra_found_recyclerview);
         mFoundBean = new FoundBean();
-        mAdapter=new FoundFraRVAdapter(mContext);
-        GridLayoutManager gridM=new GridLayoutManager(mContext,30);
+        mAdapter = new FoundFraRVAdapter(mContext);
+        GridLayoutManager gridM = new GridLayoutManager(mContext, 30);
+        // AnimRFGridLayoutManager gridM=new AnimRFGridLayoutManager(mContext,30);
         mRecyclerView.setLayoutManager(gridM);
+        mSwipeRefreshLayout = bindView(R.id.fra_found_swipeRefreshlayout);
+        mHandler=new RefreshHandler();
+        mNewFoundBean=new FoundBean();
     }
 
     @Override
     protected void initDatas() {
-        new Thread(new Runnable() {
+
+        VolleyInstance.getVolleyInstance().startJsonObjectRequest(StaticValue.URL_FOUND, new VolleyResult() {
             @Override
-            public void run() {
-                VolleyInstance.getVolleyInstance().startJsonObjectRequest(StaticValue.URL_FOUND, new VolleyResult() {
+            public void success(String resultStr) {
+                Log.d("aaa", "发现界面网络数据获取成功");
+                Gson gson = new Gson();
+                mFoundBean = gson.fromJson(resultStr, FoundBean.class);
+                if (mFoundBean != null) {
+                    Log.d("aaa", "发现界面网络数据解析成功");
+                } else {
+                    Log.d("aaa", "发现界面网络数据解析失败");
+                }
+                //将网络的到的bean进行调整
+                mAdapter.setDatas(changeNetToMy(mFoundBean));
+                mRecyclerView.setAdapter(mAdapter);
+                mSwipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
                     @Override
-                    public void success(String resultStr) {
-                        Log.d("aaa", "发现界面网络数据获取成功");
-                        Gson gson = new Gson();
-                        mFoundBean = gson.fromJson(resultStr, FoundBean.class);
-                        if (mFoundBean != null) {
-                            Log.d("aaa", "发现界面网络数据解析成功");
-                        } else {
-                            Log.d("aaa", "发现界面网络数据解析失败");
-                        }
-                        //将网络的到的bean进行调整
-                        mAdapter.setDatas(changeNetToMy(mFoundBean));
-                        mRecyclerView.setAdapter(mAdapter);
-                    }
+                    public void onRefresh() {
+                        //下拉刷新
+                        mSwipeRefreshLayout.setRefreshing(true);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final Message msg=new Message();
+                                msg.what=THREAD_REFRESH;
+                                VolleyInstance.getVolleyInstance().startJsonObjectRequest(StaticValue.URL_FOUND, new VolleyResult() {
+                                    @Override
+                                    public void success(String resultStr) {
+                                        Gson gson = new Gson();
+                                        mNewFoundBean = gson.fromJson(resultStr, FoundBean.class);
+                                        if (mNewFoundBean != null) {
+                                            Log.d("aaa", "发现界面网络数据解析成功");
+                                        } else {
+                                            Log.d("aaa", "发现界面网络数据解析失败");
+                                        }
+                                        mAdapter.setDatas(changeNetToMy(mNewFoundBean));
+                                    }
 
-                    @Override
-                    public void failure() {
-                        Log.d("aaa", "发现界面网络数据获取失败");
+                                    @Override
+                                    public void failure() {
 
+                                    }
+                                });
+                                mHandler.handleMessage(msg);
+                            }
+                        }).start();
                     }
                 });
             }
 
-            /**
-             * 为网络得到的实体类添加type
-             * @param foundBean
-             * @return
-             */
-            public FoundBean changeNetToMy(FoundBean foundBean) {
-                int type = -1;
-                for (int i = 0; i < foundBean.getResult().getCardlist().size(); i++) {
-                    switch (i) {
-                        case 6:
-                            type = 3;
-                            break;
-                        case 7:
-                            type = 6;
-                            break;
-                        case 8:
-                            type = 3;
-                            break;
-                        case 9:
-                            type = 7;
-                            break;
-                        case 10:
-                            type = 7;
-                            break;
-                        case 11:
-                            type = 8;
-                            break;
-                        default:
-                            type = i;
-                            break;
-                    }
-                    foundBean.getResult().getCardlist().get(i).setcType(type);
-                    for (int j = 0; j <foundBean.getResult().getCardlist().get(i).getData().size() ; j++) {
-                        foundBean.getResult().getCardlist().get(i).getData().get(j).setType(type);
-                    }
-                }
-                return foundBean;
+            @Override
+            public void failure() {
+                Log.d("aaa", "发现界面网络数据获取失败");
+
             }
-        }).start();
+        });
+    }
+
+    /**
+     * 为网络得到的实体类添加type
+     *
+     * @param foundBean
+     * @return
+     */
+    public FoundBean changeNetToMy(FoundBean foundBean) {
+        int type = -1;
+        for (int i = 0; i < foundBean.getResult().getCardlist().size(); i++) {
+            switch (i) {
+                case 6:
+                    type = 3;
+                    break;
+                case 7:
+                    type = 6;
+                    break;
+                case 8:
+                    type = 3;
+                    break;
+                case 9:
+                    type = 7;
+                    break;
+                case 10:
+                    type = 7;
+                    break;
+                case 11:
+                    type = 8;
+                    break;
+                default:
+                    type = i;
+                    break;
+            }
+            foundBean.getResult().getCardlist().get(i).setcType(type);
+            for (int j = 0; j < foundBean.getResult().getCardlist().get(i).getData().size(); j++) {
+                foundBean.getResult().getCardlist().get(i).getData().get(j).setType(type);
+            }
+        }
+        return foundBean;
+    }
+
+
+    /**
+     * 用来刷新加载数据
+     */
+    class RefreshHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what==THREAD_REFRESH){
+                mSwipeRefreshLayout.setRefreshing(false);//结束刷新
+            }
+        }
     }
 
 

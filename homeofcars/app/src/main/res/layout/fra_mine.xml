@@ -29,7 +29,7 @@
         </LinearLayout>
         <!--账号登录的头像-->
         <LinearLayout
-
+            android:id="@+id/fra_mine_user_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/fra_mine_item_bg_color"

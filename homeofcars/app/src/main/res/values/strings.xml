@@ -28,5 +28,11 @@
     <string name="item_found_produce_title_text">商品列表</string>
     <string name="item_found_time_gogo_title_text">限时抢购</string>
     <string name="item_found_time_title_text">双11抢购</string>
+    <!--登录界面-->
+    <string name="ac_login_user_name">手机号/邮箱/用户名</string>
+    <string name="ac_login_ueser_password">密码</string>
+    <string name="ac_login_make_sure">登录</string>
+    <string name="ac_login_register">注册</string>
+    <string name="ac_login_forget_password">忘记密码?</string>
 
 </resources>

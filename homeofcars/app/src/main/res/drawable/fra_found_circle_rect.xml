@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--圆角正方形的实现-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners
+        android:topLeftRadius="2dp"
+        android:topRightRadius="2dp"
+        android:bottomLeftRadius="2dp"
+        android:bottomRightRadius="2dp"/>
+    <!--shape是用来定义形状的，
+    gradient定义该形状里面为渐变色填充，
+    startColor起始颜色，
+    endColor结束颜色，
+    angle表示方向角度。
+    当angle=0时，渐变色是从左向右。
+     然后逆时针方向转，当angle=90时为从下往上。-->
+    <gradient
+        android:angle="45"
+        android:centerColor="#353635"
+        android:endColor="#0e0e0e"
+        android:startColor="#212121"/>
+    <padding
+        android:top="8dp"
+        android:bottom="8dp"
+        android:left="8dp"
+        android:right="8dp"
+        />
+</shape>

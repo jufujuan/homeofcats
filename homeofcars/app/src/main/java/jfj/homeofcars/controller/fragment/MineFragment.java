@@ -1,5 +1,6 @@
 package jfj.homeofcars.controller.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import jfj.homeofcars.R;
 import jfj.homeofcars.Utils.SystemBrightnessUtil;
 import jfj.homeofcars.View.CircleDrawable;
+import jfj.homeofcars.controller.activity.LoginActivity;
 import jfj.homeofcars.controller.base.AbsBaseFragment;
 
 /**
@@ -24,13 +27,14 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
     private SystemBrightnessUtil mBrightnessUtil;
 
     public static MineFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         MineFragment fragment = new MineFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fra_mine;
@@ -38,51 +42,63 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
 
     @Override
     protected void initView() {
-        userImg=bindView(R.id.fra_mine_user_img);
-        modeTv=bindView(R.id.fra_mine_brightness_mode);
-        mBrightnessUtil=new SystemBrightnessUtil(mContext);
+        userImg = bindView(R.id.fra_mine_user_img);
+        modeTv = bindView(R.id.fra_mine_brightness_mode);
+        mBrightnessUtil = new SystemBrightnessUtil(mContext);
     }
 
     @Override
     protected void initDatas() {
         //设置圆形图片
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.mipmap.ahlib_userpic_default);
-        CircleDrawable circleBitmap=new CircleDrawable(bitmap);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ahlib_userpic_default);
+        CircleDrawable circleBitmap = new CircleDrawable(bitmap);
         userImg.setImageDrawable(circleBitmap);
         //调节亮度
         modeTv.setOnClickListener(this);
+        userImg.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.fra_mine_brightness_mode:
-                if (modeTv.getText().toString().equals("夜间模式"))
-                {
-                    modeTv.setText("日间模式");
-                    //在这里将屏幕设置成夜间模式
-                    if (mBrightnessUtil.isAutoBrightness()){
-                        mBrightnessUtil.closeAutoBrightness();
-                    }
-
-                    //在这里将重新设置的这个亮度值存入到sp中
-                    SharedPreferences sp=mContext.getSharedPreferences("appuse",MineFragment.this.getActivity().MODE_PRIVATE);
-                    mBrightnessUtil.saveBrightness(sp.getInt("original_brightness",254)/2);
-                    SharedPreferences.Editor editor=sp.edit();
-                    editor.putInt("new_brightness",sp.getInt("original_brightness",254)/2);
-                    editor.commit();
-                }else{
-                    modeTv.setText("夜间模式");
-                    SharedPreferences sp=mContext.getSharedPreferences("appuse",MineFragment.this.getActivity().MODE_PRIVATE);
-                    int newBrightness= sp.getInt("new_brightness",-1);
-                    //恢复原来的屏幕亮度
-                    int originalBrightness= sp.getInt("original_brightness",-1);
-                    //恢复原来的屏幕亮度
-                    if (originalBrightness>0) {
-                        mBrightnessUtil.saveBrightness(originalBrightness);
-                    }
-                }
+                setBrightnessMode();
                 break;
+            case R.id.fra_mine_user_img:
+                goTo(mContext, LoginActivity.class);
+                //Log.d("aaa", "触发点击事件");
+               // startActivity(new Intent(mContext, LoginActivity.class));
+                break;
+        }
+    }
+
+    /**
+     * 设置夜间和日间模式
+     */
+    private void setBrightnessMode() {
+        if (modeTv.getText().toString().equals("夜间模式")) {
+            modeTv.setText("日间模式");
+            //在这里将屏幕设置成夜间模式
+            if (mBrightnessUtil.isAutoBrightness()) {
+                mBrightnessUtil.closeAutoBrightness();
+            }
+
+            //在这里将重新设置的这个亮度值存入到sp中
+            SharedPreferences sp = mContext.getSharedPreferences("appuse", MineFragment.this.getActivity().MODE_PRIVATE);
+            mBrightnessUtil.saveBrightness(sp.getInt("original_brightness", 254) / 2);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("new_brightness", sp.getInt("original_brightness", 254) / 2);
+            editor.commit();
+        } else {
+            modeTv.setText("夜间模式");
+            SharedPreferences sp = mContext.getSharedPreferences("appuse", MineFragment.this.getActivity().MODE_PRIVATE);
+            int newBrightness = sp.getInt("new_brightness", -1);
+            //恢复原来的屏幕亮度
+            int originalBrightness = sp.getInt("original_brightness", -1);
+            //恢复原来的屏幕亮度
+            if (originalBrightness > 0) {
+                mBrightnessUtil.saveBrightness(originalBrightness);
+            }
         }
     }
 }

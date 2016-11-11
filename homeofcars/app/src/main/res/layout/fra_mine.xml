@@ -43,6 +43,7 @@
                 android:src="@mipmap/ahlib_userpic_default"/>
 
             <TextView
+                android:id="@+id/fra_mine_user_name_tv"
                 android:paddingTop="@dimen/fra_mine_item_padding_vertical"
                 android:paddingBottom="@dimen/fra_mine_item_padding_vertical"
                 android:layout_width="wrap_content"

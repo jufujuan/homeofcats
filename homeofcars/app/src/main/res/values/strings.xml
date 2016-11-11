@@ -36,5 +36,8 @@
     <string name="ac_login_make_sure">登录</string>
     <string name="ac_login_register">注册</string>
     <string name="ac_login_forget_password">忘记密码?</string>
+    <!--推荐更多-->
+    <string name="ac_re_more_title">更多</string>
+    <string name="ac_re_more_subtitle">长按可推动排序</string>
 
 </resources>

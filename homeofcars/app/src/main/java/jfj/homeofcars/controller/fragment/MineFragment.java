@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import jfj.homeofcars.R;
@@ -23,7 +22,7 @@ import jfj.homeofcars.controller.base.AbsBaseFragment;
 public class MineFragment extends AbsBaseFragment implements OnClickListener {
 
     private ImageView userImg;
-    private TextView modeTv;
+    private TextView modeTv,nameTv;
     private SystemBrightnessUtil mBrightnessUtil;
 
     public static MineFragment newInstance() {
@@ -45,6 +44,7 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
         userImg = bindView(R.id.fra_mine_user_img);
         modeTv = bindView(R.id.fra_mine_brightness_mode);
         mBrightnessUtil = new SystemBrightnessUtil(mContext);
+        nameTv=bindView(R.id.fra_mine_user_name_tv);
     }
 
     @Override
@@ -56,6 +56,10 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
         //调节亮度
         modeTv.setOnClickListener(this);
         userImg.setOnClickListener(this);
+        SharedPreferences sp=mContext.getSharedPreferences("LoginState",mContext.MODE_PRIVATE);
+        if (sp.getBoolean("isLogin",false)){
+            nameTv.setText(sp.getString("name","请登录"));
+        }
     }
 
     @Override
@@ -65,11 +69,28 @@ public class MineFragment extends AbsBaseFragment implements OnClickListener {
                 setBrightnessMode();
                 break;
             case R.id.fra_mine_user_img:
-                goTo(mContext, LoginActivity.class);
+                //goTo(mContext, LoginActivity.class);
+                Intent intent=new Intent(mContext, LoginActivity.class);
                 //Log.d("aaa", "触发点击事件");
-               // startActivity(new Intent(mContext, LoginActivity.class));
+                startActivityForResult(intent,102);
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==102&&resultCode==103){
+            String name=data.getStringExtra("name");
+            nameTv.setText(name);
+            //将登陆的状态存储到sp中
+            SharedPreferences sp=mContext.getSharedPreferences("LoginState",mContext.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sp.edit();
+            editor.putBoolean("isLogin",true);
+            editor.putString("name",name);
+            editor.commit();
+        }
+
     }
 
     /**

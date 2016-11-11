@@ -5,34 +5,58 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#3397ef"/>
-
-    <LinearLayout
-        android:orientation="vertical"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/ac_login_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="     "/>
+    <ImageView
+        android:id="@+id/ac_login_top_bg_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@mipmap/login_top_bg"/>
+</FrameLayout>
 
-        <EditText
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fra_login_margin"
+        android:orientation="vertical">
+
+        <jfj.homeofcars.View.AutoDeleteEditText
+            android:background="@null"
             android:id="@+id/ac_login_user_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ac_login_user_name"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:hint="@string/ac_login_user_name"
+            android:lines="1"/>
 
-        <EditText
+        <jfj.homeofcars.View.AutoDeleteEditText
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@null"
             android:id="@+id/ac_login_user_password_et"
-            android:hint="@string/ac_login_ueser_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:hint="@string/ac_login_ueser_password"
+            android:lines="1"/>
 
         <Button
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@color/ac_login_sure_btn_bg_default"
             android:id="@+id/ac_login_make_sure_btn"
-            android:text="@string/ac_login_make_sure"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhiteText"
+            android:text="@string/ac_login_make_sure"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,14 +64,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:text="@string/ac_login_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/ac_login_register"/>
 
             <TextView
-                android:text="@string/ac_login_forget_password"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/ac_login_forget_password"/>
         </LinearLayout>
     </LinearLayout>
     <!--第三方等登录-->

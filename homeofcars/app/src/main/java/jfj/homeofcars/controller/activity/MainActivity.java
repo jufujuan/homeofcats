@@ -120,5 +120,10 @@ public class MainActivity extends AbsBaseActivity {
         int originalBrightness= sp.getInt("original_brightness",127);
         //恢复原来的屏幕亮度
         mBrightnessUtil.saveBrightness(originalBrightness);
+        //将登陆的状态恢复为false
+        SharedPreferences loginState=getSharedPreferences("LoginState",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putBoolean("isLogin",false);
+        editor.commit();
     }
 }

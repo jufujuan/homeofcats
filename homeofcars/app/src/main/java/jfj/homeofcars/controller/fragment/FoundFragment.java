@@ -52,7 +52,6 @@ public class FoundFragment extends AbsBaseFragment {
         mFoundBean = new FoundBean();
         mAdapter = new FoundFraRVAdapter(mContext);
         GridLayoutManager gridM = new GridLayoutManager(mContext, 30);
-        // AnimRFGridLayoutManager gridM=new AnimRFGridLayoutManager(mContext,30);
         mRecyclerView.setLayoutManager(gridM);
         mSwipeRefreshLayout = bindView(R.id.fra_found_swipeRefreshlayout);
         mHandler=new RefreshHandler();
@@ -136,17 +135,18 @@ public class FoundFragment extends AbsBaseFragment {
                     type = 6;
                     break;
                 case 8:
-                    type = 3;
+                    type = 7;
                     break;
                 case 9:
                     type = 7;
                     break;
                 case 10:
-                    type = 7;
-                    break;
-                case 11:
                     type = 8;
                     break;
+//                case 11:
+//                    Log.d("FoundFragment", "type");
+//                    type = 8;
+//                    break;
                 default:
                     type = i;
                     break;
@@ -176,7 +176,6 @@ public class FoundFragment extends AbsBaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Thread thread=mAdapter.getMyThread();
-        thread.interrupt();
+        mAdapter.setFlag(false);
     }
 }

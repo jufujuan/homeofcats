@@ -19,5 +19,7 @@
     <dimen name="fra_found_item_margin_small">5dp</dimen>
     <dimen name="fra_found_item_price_subtitle_size">10sp</dimen>
     <dimen name="fra_found_time_rect_height_and_width">15dp</dimen>
+    <!--登录界面-->
+    <dimen name="fra_login_margin">20dp</dimen>
 
 </resources>

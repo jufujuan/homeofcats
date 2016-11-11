@@ -45,6 +45,7 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     private TimeLimitHandler handler = new TimeLimitHandler();
     private CommonViewHolder timeHolder;
     private Thread myThread;
+    private Boolean flag=true;
 
 
     public FoundFraRVAdapter(Context context) {
@@ -52,7 +53,7 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         myThread=new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (flag) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -72,8 +73,8 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         myThread.start();
     }
 
-    public Thread getMyThread() {
-        return myThread;
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
     }
 
     public void setDatas(FoundBean datas) {
@@ -183,8 +184,8 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
                 CommonViewHolder modeVH = CommonViewHolder.getViewHolder(parent, R.layout.item_null);
                 return modeVH;
             case PRODUCE_TYPE:
-                CommonViewHolder produceVH = CommonViewHolder.getViewHolder(parent, R.layout.item_found_produce);
                 Log.d("aaa", "商品列表");
+                CommonViewHolder produceVH = CommonViewHolder.getViewHolder(parent, R.layout.item_found_produce);
                 return produceVH;
             default:
                 return null;
@@ -224,6 +225,7 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
                 holder.setRecyclerView(mContext, 3, R.id.item_found_activity_rv, acItemRVAdapter);
                 break;
             case PRODUCE_TYPE://商品列表
+                Log.d("aaa", "商品列表行数:"+datas.getResult().getCardlist().get(position).getData().size());
                 FoundProduceItemRVAdapter produceItemRVAdapter = new FoundProduceItemRVAdapter(mContext);
                 produceItemRVAdapter.setDatas(datas.getResult().getCardlist().get(position).getData());
                 holder.setRecyclerView(mContext, 1, R.id.item_found_produce_rv, produceItemRVAdapter);
@@ -238,26 +240,6 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
                 holder.setText(R.id.item_found_time_gogo_minute_tv, String.valueOf(timeFinal.get(2)));
                 holder.setText(R.id.item_found_time_gogo_second_tv, String.valueOf(timeFinal.get(3)));
                 timeHolder=holder;
-//                    new Thread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            while (true) {
-//                                try {
-//                                    Thread.sleep(1000);
-//                                } catch (InterruptedException e) {
-//                                    e.printStackTrace();
-//                                }
-//
-//                                Message message = new Message();
-//                                message.what = THREAD_TIME;
-//                                message.obj = holder;
-//                                message.arg1 = getSecondCount(endDate) + 1;
-//                                handler.sendMessage(message);
-//                            }
-//                        }
-//
-//                    }).start();
-
                 break;
             case TIME_TYPE://图文限时专区
                 FoundTimeItemRVAdapter timeItemRVAdapter = new FoundTimeItemRVAdapter(mContext);
@@ -275,7 +257,6 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
                 int count = msg.arg1;
                 List<Integer> time = getLeastTime(count);
                 CommonViewHolder holder = (CommonViewHolder) msg.obj;
-                Log.d("aaa", "time.get(3):" + time.get(3));
                 holder.setText(R.id.item_found_time_gogo_day_tv, String.valueOf(time.get(0)));
                 holder.setText(R.id.item_found_time_gogo_hour_tv, String.valueOf(time.get(1)));
                 holder.setText(R.id.item_found_time_gogo_minute_tv, String.valueOf(time.get(2)));
@@ -392,7 +373,6 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         times.add(hour);
         times.add(minute);
         times.add(second);
-        Log.d("aaa", year + ":" + month + ":" + day + ":" + hour + ":" + minute + ":" + second);
         return times;
     }
 

@@ -2,6 +2,8 @@ package jfj.homeofcars.controller.adapter.recyclerview;
 
 import android.content.Context;
 import android.graphics.Bitmap.Config;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup;
 import android.support.v7.widget.RecyclerView;
@@ -38,11 +40,40 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     private final static int ACTIVITY_TYPE = 6;//活动专区
     private final static int MODE_TYPE = 7;//模块列表
     private final static int PRODUCE_TYPE = 8;//商品列表
+    private final static int THREAD_TIME = 101;
     private String endDate = "2016-11-20 18:30:28";//限时疯抢的截止日期(网络没有获取到,在这里先用假数据)
+    private TimeLimitHandler handler = new TimeLimitHandler();
+    private CommonViewHolder timeHolder;
+    private Thread myThread;
 
 
     public FoundFraRVAdapter(Context context) {
         mContext = context;
+        myThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        break;//当线程阻塞的时候,优雅的结束线程
+                    }
+
+                    Message message = new Message();
+                    message.what = THREAD_TIME;
+                    message.obj = timeHolder;
+                    message.arg1 = getSecondCount(endDate) + 1;
+                    handler.sendMessage(message);
+                }
+            }
+
+        });
+        myThread.start();
+    }
+
+    public Thread getMyThread() {
+        return myThread;
     }
 
     public void setDatas(FoundBean datas) {
@@ -161,7 +192,7 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CommonViewHolder holder, final int position) {
+    public void onBindViewHolder(final CommonViewHolder holder, final int position) {
         switch (getItemViewType(position)) {
             case FOCUS_TYPE://焦点图
                 List<String> imgUrls = new ArrayList<>();
@@ -201,11 +232,32 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
                 FoundTimeGoGoItemRVAdapter timeGoGoItemRVAdapter = new FoundTimeGoGoItemRVAdapter(mContext);
                 timeGoGoItemRVAdapter.setDatas(datas.getResult().getCardlist().get(position).getData());
                 holder.setRecyclerViewH(mContext, 1, R.id.item_found_time_gogo_rv, timeGoGoItemRVAdapter);
-               // List<String> dataaaaa = getLeastTime(endDate);
-//                    holder.setText(R.id.item_found_time_gogo_day_tv,);
-//                    holder.setText(R.id.item_found_time_gogo_hour_tv,);
-//                    holder.setText(R.id.item_found_time_gogo_minute_tv,);
-//                    holder.setText(R.id.item_found_time_gogo_second_tv,);
+                final List<Integer> timeFinal = getLeastTime(endDate);
+                holder.setText(R.id.item_found_time_gogo_day_tv, String.valueOf(timeFinal.get(0)));
+                holder.setText(R.id.item_found_time_gogo_hour_tv, String.valueOf(timeFinal.get(1)));
+                holder.setText(R.id.item_found_time_gogo_minute_tv, String.valueOf(timeFinal.get(2)));
+                holder.setText(R.id.item_found_time_gogo_second_tv, String.valueOf(timeFinal.get(3)));
+                timeHolder=holder;
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            while (true) {
+//                                try {
+//                                    Thread.sleep(1000);
+//                                } catch (InterruptedException e) {
+//                                    e.printStackTrace();
+//                                }
+//
+//                                Message message = new Message();
+//                                message.what = THREAD_TIME;
+//                                message.obj = holder;
+//                                message.arg1 = getSecondCount(endDate) + 1;
+//                                handler.sendMessage(message);
+//                            }
+//                        }
+//
+//                    }).start();
+
                 break;
             case TIME_TYPE://图文限时专区
                 FoundTimeItemRVAdapter timeItemRVAdapter = new FoundTimeItemRVAdapter(mContext);
@@ -215,48 +267,106 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         }
     }
 
+    protected class TimeLimitHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == THREAD_TIME) {
+                int count = msg.arg1;
+                List<Integer> time = getLeastTime(count);
+                CommonViewHolder holder = (CommonViewHolder) msg.obj;
+                Log.d("aaa", "time.get(3):" + time.get(3));
+                holder.setText(R.id.item_found_time_gogo_day_tv, String.valueOf(time.get(0)));
+                holder.setText(R.id.item_found_time_gogo_hour_tv, String.valueOf(time.get(1)));
+                holder.setText(R.id.item_found_time_gogo_minute_tv, String.valueOf(time.get(2)));
+                holder.setText(R.id.item_found_time_gogo_second_tv, String.valueOf(time.get(3)));
+            }
+        }
+    }
+
+    /**
+     * 用于计算总的秒数
+     */
+    public int getSecondCount(String time) {
+        int count = 0;
+        List<Integer> end = timeChangeStrToInt(time);
+        count = end.get(2) * 24 * 60 * 60 + end.get(3) * 60 * 60 + end.get(4) * 60 + end.get(5);
+        return count;
+    }
+
     /**
      * 对时间进行处理(限时抢购)
      * 用来获取剩余时间
      */
     public List<Integer> getLeastTime(String endTime) {
         List<Integer> time = new ArrayList<>();//用来存储日,时,分,秒
-        List<Integer> end=timeChangeStrToInt(endTime);
         //获得当前的时间
         SimpleDateFormat currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTimeStr = currentTime.format(new Date());
-        List<Integer> current=timeChangeStrToInt(currentTimeStr);
         /**
          *这里简化了一些判断(假定为当年当月)
          * 注:懒得写
          */
-        int secondEndCount=end.get(2)*24*60*60+end.get(3)*60*60+end.get(4)*60+end.get(5);
-        int secondCurrentCount=current.get(2)*24*60*60+current.get(3)*60*60+current.get(4)*60+current.get(5);
-        if (secondEndCount-secondCurrentCount<=0){
+        int secondEndCount = getSecondCount(endTime);
+        int secondCurrentCount = getSecondCount(currentTimeStr);
+        if (secondEndCount - secondCurrentCount <= 0) {
             time.add(0);
             time.add(0);
             time.add(0);
             time.add(0);
-        }else{
-            int leastCount=secondEndCount-secondCurrentCount;
-            int p=0,m=0;
-//            time.add(leastCount/24/60/60);
-//            p=leastCount/24/60/60;
-//            m=leastCount-p*24*60*60;
-//
-//            time.add(m/60/60);
-//            p=m/60/60;
-//            m=leastCount-m;
-//            time.add((m-p*60*60)/60);
-//            p=(leastCount-p*60*60)/60;
-//            time.add();
+        } else {
+            int leastCount = secondEndCount - secondCurrentCount;
+            int p = 0, m = 0;
+            time.add(leastCount / 24 / 60 / 60);//天
+            p = leastCount / 24 / 60 / 60;//天数
+            m = leastCount - p * 24 * 60 * 60;//减掉天数
+            time.add(m / 60 / 60);//时
+            p = m / 60 / 60;//小时数
+            m = m - p * 60 * 60;//减掉小时数
+            time.add(m / 60);//分钟
+            p = m / 60;//分钟
+            m = m - p * 60;
+            time.add(m);//秒
+        }
+        return time;
+    }
 
+    public List<Integer> getLeastTime(int endTimeCount) {
+        List<Integer> time = new ArrayList<>();//用来存储日,时,分,秒
+        //获得当前的时间
+        SimpleDateFormat currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTimeStr = currentTime.format(new Date());
+        /**
+         *这里简化了一些判断(假定为当年当月)
+         * 注:懒得写
+         */
+        int secondEndCount = endTimeCount;
+        int secondCurrentCount = getSecondCount(currentTimeStr);
+        if (secondEndCount - secondCurrentCount <= 0) {
+            time.add(0);
+            time.add(0);
+            time.add(0);
+            time.add(0);
+        } else {
+            int leastCount = secondEndCount - secondCurrentCount;
+            int p = 0, m = 0;
+            time.add(leastCount / 24 / 60 / 60);//天
+            p = leastCount / 24 / 60 / 60;//天数
+            m = leastCount - p * 24 * 60 * 60;//减掉天数
+            time.add(m / 60 / 60);//时
+            p = m / 60 / 60;//小时数
+            m = m - p * 60 * 60;//减掉小时数
+            time.add(m / 60);//分钟
+            p = m / 60;//分钟
+            m = m - p * 60;
+            time.add(m);//秒
         }
         return time;
     }
 
     /**
      * 将yyy-MM-dd HH:mm:ss这种格式的转化成int的数组
+     *
      * @param timeStr
      * @return
      */
@@ -290,4 +400,6 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     public int getItemCount() {
         return datas == null ? 0 : datas.getResult().getCardlist().size();
     }
+
+
 }

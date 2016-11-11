@@ -173,5 +173,10 @@ public class FoundFragment extends AbsBaseFragment {
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Thread thread=mAdapter.getMyThread();
+        thread.interrupt();
+    }
 }

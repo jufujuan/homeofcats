@@ -22,6 +22,8 @@
             android:text="@string/item_found_time_gogo_title_text"/>
 
         <TextView
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:gravity="center"
             android:id="@+id/item_found_time_gogo_day_tv"
             android:textColor="@color/colorWhiteText"
             android:layout_margin="@dimen/fra_found_item_margin_small"
@@ -32,10 +34,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="天"
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:text="@string/item_found_time_day_text"
             />
         <TextView
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:gravity="center"
             android:id="@+id/item_found_time_gogo_hour_tv"
             android:textColor="@color/colorWhiteText"
             android:layout_margin="@dimen/fra_found_item_margin_small"
@@ -46,10 +50,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text=":"
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:text="@string/item_found_time_hour_text"
             />
         <TextView
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:gravity="center"
             android:id="@+id/item_found_time_gogo_minute_tv"
             android:textColor="@color/colorWhiteText"
             android:layout_margin="@dimen/fra_found_item_margin_small"
@@ -60,10 +66,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text=":"
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:text="@string/item_found_time_hour_text"
             />
         <TextView
+            android:textSize="@dimen/fra_found_item_price_subtitle_size"
+            android:gravity="center"
             android:id="@+id/item_found_time_gogo_second_tv"
             android:textColor="@color/colorWhiteText"
             android:layout_margin="@dimen/fra_found_item_margin_small"

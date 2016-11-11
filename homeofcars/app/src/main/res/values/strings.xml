@@ -28,6 +28,8 @@
     <string name="item_found_produce_title_text">商品列表</string>
     <string name="item_found_time_gogo_title_text">限时抢购</string>
     <string name="item_found_time_title_text">双11抢购</string>
+    <string name="item_found_time_day_text">天</string>
+    <string name="item_found_time_hour_text">:</string>
     <!--登录界面-->
     <string name="ac_login_user_name">手机号/邮箱/用户名</string>
     <string name="ac_login_ueser_password">密码</string>

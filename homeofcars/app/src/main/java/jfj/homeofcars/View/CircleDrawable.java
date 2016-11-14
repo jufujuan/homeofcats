@@ -39,6 +39,7 @@ public class CircleDrawable extends Drawable{
         r=Math.min(mBitmap.getWidth()/2,mBitmap.getHeight()/2);
     }
 
+
     @Override
     public void draw(Canvas canvas) {
         canvas.drawCircle(mBitmap.getWidth()/2,mBitmap.getHeight()/2,r,mPaint);

@@ -39,5 +39,15 @@
     <!--推荐更多-->
     <string name="ac_re_more_title">更多</string>
     <string name="ac_re_more_subtitle">长按可推动排序</string>
+    <!--推荐下的推荐界面-->
+    <string name="fra_re_recommend_flovar_time">00:00</string>
+    <string name="fra_re_recommend_flovar_title">标题</string>
+    <string name="fra_re_recommend_flovar_count">0000播放</string>
+    <string name="fra_re_recommend_flovar_date">00-00</string>
+    <string name="fra_re_recommend_common_count">0000评论</string>
+    <string name="fra_re_recommend_common_first">首发</string>
+    <string name="fra_re_recommend_three_picture_title">标题</string>
+    <string name="fra_re_recommend_three_picture_count">0000图片</string>
+    <string name="fra_re_recommend_three_picture_date">00-00</string>
 
 </resources>

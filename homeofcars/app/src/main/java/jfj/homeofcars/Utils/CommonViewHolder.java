@@ -20,6 +20,7 @@ import com.youth.banner.Transformer;
 
 import java.util.List;
 
+import jfj.homeofcars.View.CircleDrawable;
 import jfj.homeofcars.View.GlideImageLoader;
 import jfj.homeofcars.model.net.VolleyImageResult;
 import jfj.homeofcars.model.net.VolleyInstance;
@@ -109,6 +110,12 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
         textView.setText(text);
         return this;
     }
+    public CommonViewHolder setText(int resId, String text,int flags) {
+        TextView textView = getView(resId);
+        textView.setText(text);
+        textView.getPaint().setFlags(flags); //删除线
+        return this;
+    }
 
     /**
      * 为ImageView设置图片(重载)
@@ -154,6 +161,36 @@ public class CommonViewHolder extends RecyclerView.ViewHolder {
                     @Override
                     public void success(Bitmap resultStr) {
                         imageView.setImageBitmap(resultStr);
+                    }
+                });
+            }
+        }).start();
+        return this;
+    }
+    /**
+     * 为ImageView设置图片(重载)
+     * @param resId 控件Id
+     * @param imgUrl 需要设置的网络图片的网址
+     * @return
+     */
+    public CommonViewHolder setCircleImg(int resId, final String imgUrl, final int width, final int height , final ScaleType scaleType, final Config config){
+        final ImageView imageView=getView(resId);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                VolleyInstance.getVolleyInstance().starImageRequest(imgUrl, width, height, scaleType, config, new VolleyImageResult() {
+                    @Override
+                    public void failure() {
+                        Log.d("CommonViewHolder", "获取图片失败");
+                    }
+
+                    @Override
+                    public void success(Bitmap resultStr) {
+                        //设置圆形图片
+                        CircleDrawable circleBitmap = new CircleDrawable(resultStr);
+                        imageView.setImageDrawable(circleBitmap);
+                        //imageView.setScaleType(scaleType);
+
                     }
                 });
             }

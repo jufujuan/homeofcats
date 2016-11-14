@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/fra_re_yc_user_img"
+        android:layout_width="@dimen/fra_re_yc_user_img"
+        android:layout_height="@dimen/fra_re_yc_user_img"
+        android:layout_margin="5dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fra_re_yc_img_bg_margin"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/fra_re_yc_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fra_re_yc_user_img"
+            android:text="用户名"
+            android:textColor="@color/fra_re_yc_user_text_color"
+            android:textSize="@dimen/fra_re_yc_text_size"/>
+
+        <TextView
+            android:id="@+id/fra_re_yc_user_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fra_re_yc_text_margin"
+            android:text="标题"
+            android:textColor="@color/fra_re_yc_user_title_color"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/fra_re_yc_img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/ahlib_audio_play"/>
+
+            <TextView
+                android:id="@+id/fra_re_yc_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="3dp"
+                android:background="@color/fra_re_recommend_flovar_time_bg"
+                android:text="@string/fra_re_recommend_flovar_time"
+                android:textColor="@color/fra_re_recommend_flovar_time_text"
+                android:textSize="@dimen/fra_re_recommend_flovar_time_text_size"
+                />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/fra_re_yc_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00-00"
+                android:textSize="@dimen/fra_re_yc_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fra_re_yc_text_margin"
+                android:text="评论"
+                android:textSize="@dimen/fra_re_yc_text_size"/>
+
+            <TextView
+                android:id="@+id/fra_re_yc_speak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fra_re_yc_text_margin"
+                android:text="0"
+                android:textSize="@dimen/fra_re_yc_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fra_re_yc_text_margin"
+                android:text="赞"
+                android:textSize="@dimen/fra_re_yc_text_size"/>
+
+            <TextView
+                android:id="@+id/fra_re_yc_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="@dimen/fra_re_yc_text_size"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

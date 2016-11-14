@@ -23,4 +23,14 @@
     <color name="ac_login_sure_btn_bg_p">#1d9cec</color>
     <!--推荐界面-->
     <color name="fra_recommend_tab_line_color">#030303</color>
+    <!--推荐下的推荐界面-->
+    <color name="fra_re_recommend_flovar_time_bg">#e0000000</color>
+    <color name="fra_re_recommend_flovar_time_text">#ffffff</color>
+    <color name="fra_re_recommend_flovar_title_text">#020202</color>
+    <color name="fra_re_recommend_common_first_text">#f29e27</color>
+    <color name="fra_re_recommend_three_pic_title">#020202</color>
+    <!--推荐界面下的优创界面-->
+    <color name="fra_re_yc_user_text_color">#1d75ef</color>
+    <color name="fra_re_yc_user_title_color">#030303</color>
+
 </resources>

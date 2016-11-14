@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="bottom|right"
+              android:layout_margin="@dimen/fra_re_recommend_flovar_time_margin"
+              android:background="@color/fra_re_recommend_flovar_time_bg"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:padding="@dimen/fra_re_recommend_flovar_time_margin">
+    <TextView
+        android:textSize="@dimen/fra_re_recommend_flovar_time_text_size"
+        android:id="@+id/item_re_flovar_time_count"
+        android:textColor="@color/fra_re_recommend_flovar_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fra_re_recommend_flovar_time"/>
+</LinearLayout>

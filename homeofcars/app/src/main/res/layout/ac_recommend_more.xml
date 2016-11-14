@@ -2,14 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/bg_color"
               android:orientation="vertical">
 
     <FrameLayout
+        android:background="@color/item_bg_color"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/ac_recommend_more_back_img"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:src="@mipmap/ahlib_close_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -20,13 +25,16 @@
             android:text="@string/ac_re_more_title"/>
     </FrameLayout>
     <TextView
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ac_re_more_subtitle"/>
     <android.support.v7.widget.RecyclerView
+        android:background="@color/item_bg_color"
         android:id="@+id/ac_re_recommend_more_tab_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

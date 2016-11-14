@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--花边-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/fra_re_recommend_flovar_all_margin"
+              android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_re_flovar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fra_re_recommend_flovar_title"
+            android:textColor="@color/fra_re_recommend_flovar_title_text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_re_flovar_play_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fra_re_recommend_flovar_count"
+                android:textSize="@dimen/fra_re_recommend_flovar_time_text_size"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/item_re_flovar_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fra_re_recommend_flovar_date"
+                android:textSize="@dimen/fra_re_recommend_flovar_time_text_size"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_re_flovar_logo"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ahlib_logo_180_136"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/fra_re_recommend_flovar_time_margin"
+            android:background="@color/fra_re_recommend_flovar_time_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/fra_re_recommend_flovar_time_margin">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ahlib_pic_ad_play"
+                />
+
+            <TextView
+                android:id="@+id/item_re_flovar_time_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fra_re_recommend_flovar_time"
+                android:textColor="@color/fra_re_recommend_flovar_time_text"
+                android:textSize="@dimen/fra_re_recommend_flovar_time_text_size"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

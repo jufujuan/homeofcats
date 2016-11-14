@@ -21,5 +21,18 @@
     <dimen name="fra_found_time_rect_height_and_width">15dp</dimen>
     <!--登录界面-->
     <dimen name="fra_login_margin">20dp</dimen>
+    <!-- 推荐界面下的推荐-->
+    <dimen name="fra_re_recommend_flovar_time_margin">3dp</dimen>
+    <dimen name="fra_re_recommend_flovar_all_margin">10dp</dimen>
+    <dimen name="fra_re_recommend_flovar_time_text_size">10sp</dimen>
+    <dimen name="fra_re_recommend_three_pic_margin">10dp</dimen>
+    <dimen name="fra_re_recommend_three_pic_pad">10dp</dimen>
+    <!-- 推荐界面下的优创-->
+    <dimen name="fra_re_yc_text_size">10sp</dimen>
+    <dimen name="fra_re_yc_text_margin">5dp</dimen>
+    <dimen name="fra_re_yc_img_bg_margin">5dp</dimen>
+    <dimen name="fra_re_yc_user_img">30dp</dimen>
+    <dimen name="fra_re_yc_small_padding">10dp</dimen>
+
 
 </resources>

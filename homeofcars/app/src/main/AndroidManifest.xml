@@ -21,6 +21,9 @@
         <activity android:name=".controller.activity.LoginActivity">
 
         </activity>
+        <activity android:name=".controller.activity.ReMoreActivity">
+
+        </activity>
     </application>
 
 </manifest>

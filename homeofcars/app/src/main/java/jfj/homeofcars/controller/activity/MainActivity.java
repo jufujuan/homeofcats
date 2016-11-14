@@ -8,11 +8,11 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import jfj.homeofcars.R;
 import jfj.homeofcars.Utils.SystemBrightnessUtil;
 import jfj.homeofcars.controller.base.AbsBaseActivity;
-import jfj.homeofcars.controller.fragment.ForumFragment;
-import jfj.homeofcars.controller.fragment.FoundFragment;
-import jfj.homeofcars.controller.fragment.MineFragment;
-import jfj.homeofcars.controller.fragment.RecommendFragment;
-import jfj.homeofcars.controller.fragment.SelectedFragment;
+import jfj.homeofcars.controller.fragment.forum.ForumFragment;
+import jfj.homeofcars.controller.fragment.found.FoundFragment;
+import jfj.homeofcars.controller.fragment.mine.MineFragment;
+import jfj.homeofcars.controller.fragment.recommend.RecommendFragment;
+import jfj.homeofcars.controller.fragment.select.SelectedFragment;
 
 public class MainActivity extends AbsBaseActivity {
 

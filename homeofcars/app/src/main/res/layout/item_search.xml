@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+
+              android:orientation="horizontal">
+
+    <TextView
+        android:layout_margin="@dimen/ac_search_margin"
+        android:id="@+id/item_search"
+        android:layout_width="0dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ac_search_item_text"
+        android:textColor="@color/ac_search_item_text_color"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:layout_margin="@dimen/ac_search_margin"
+        android:src="@mipmap/ahlib_location_city_history_arrow"
+        android:layout_width="15dp"
+        android:scaleType="fitXY"
+        android:layout_height="15dp"/>
+</LinearLayout>

@@ -32,5 +32,8 @@
     <!--推荐界面下的优创界面-->
     <color name="fra_re_yc_user_text_color">#1d75ef</color>
     <color name="fra_re_yc_user_title_color">#030303</color>
+    <!--搜索界面-->
+    <color name="ac_search_item_text_color">#030303</color>
+
 
 </resources>

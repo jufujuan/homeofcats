@@ -120,4 +120,10 @@ public final class MyNetUrlSet {
     // 全部
     public static final String DISCOVER_ALL_URL = "http://mobile.app.autohome.com.cn/discover_v7.1.0/mobile/entrylist.ashx?pm=1";
     public static final String MORE_ACTIVI_URL = "http://news.app.autohome.com.cn/shouye_v7.0.0/mobile/metadata.ashx?a=2&pm=2&v=7.0.7&types=newstype%7C636002832282225908%2Cvideotype%7C636002832282225908";
+    //内容搜索
+    public static final String URL_STR_SEARCH="http://sou.m.autohome.com.cn/h5/1.1/search.html?type=0&keyword=替换字符串&night=0&bbsid=0&lng=121.550912&lat=38.889734&nettype=5&netprovider=0";
+    //关键字搜索
+    public static final String URL_KEY_SEARCH="http://mobilenc.app.autohome.com.cn/sou_v5.7.0/sou/suggestwords.ashx?pm=2&k=替换字符串&t=4";
+
+
 }

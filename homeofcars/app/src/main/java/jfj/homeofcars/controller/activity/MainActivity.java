@@ -43,6 +43,7 @@ public class MainActivity extends AbsBaseActivity {
 
     @Override
     protected void initDatas() {
+
         //将当前的屏幕亮度存储到sp
         SharedPreferences sp=getSharedPreferences("appuse",MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
@@ -78,6 +79,7 @@ public class MainActivity extends AbsBaseActivity {
             }
         });
 
+
     }
 
     @Override
@@ -91,6 +93,7 @@ public class MainActivity extends AbsBaseActivity {
         }
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -99,8 +102,8 @@ public class MainActivity extends AbsBaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
     }
+
 
     @Override
     protected void onStop() {

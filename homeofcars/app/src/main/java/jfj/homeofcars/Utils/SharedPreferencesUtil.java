@@ -53,8 +53,7 @@ public class SharedPreferencesUtil {
      * @return
      */
     private static int getIntValue(Context context, String key, int defValue) {
-        SharedPreferences sp = context.getSharedPreferences(SETTING,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE);
         int value = sp.getInt(key, defValue);
         return value;
     }
@@ -82,6 +81,13 @@ public class SharedPreferencesUtil {
     public static int getStrListSize(Context context,String key){
         SharedPreferences sp=context.getSharedPreferences(SETTING,Context.MODE_PRIVATE);
         return getStrListValue(context,key).size();
+    }
+    /**
+     * 判断是否存在数据
+     */
+    public static int getInListSize(Context context,String key){
+        SharedPreferences sp=context.getSharedPreferences(SETTING,Context.MODE_PRIVATE);
+        return getIntListValue(context,key).size();
     }
     /**
      * 存储List<String>

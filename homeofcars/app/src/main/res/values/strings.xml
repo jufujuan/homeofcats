@@ -49,5 +49,8 @@
     <string name="fra_re_recommend_three_picture_title">标题</string>
     <string name="fra_re_recommend_three_picture_count">0000图片</string>
     <string name="fra_re_recommend_three_picture_date">00-00</string>
+    <!--搜索界面-->
+    <string name="ac_search_delete_btn">取消</string>
+    <string name="ac_search_hint">搜索关键词</string>
 
 </resources>

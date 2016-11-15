@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ac_search_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/ac_search_circle_rect"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/ac_search_padding">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="@dimen/ac_search_padding"
+                android:layout_marginRight="@dimen/ac_search_padding"
+                android:src="@mipmap/ahlib_nav_icon_search_p"/>
+
+            <jfj.homeofcars.View.AutoDeleteEditText
+                android:id="@+id/ac_search_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/ac_search_hint"
+                android:textSize="@dimen/ac_search_et_hint_size"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ac_search_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ac_search_padding"
+            android:text="@string/ac_search_delete_btn"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color"/>
+
+        <ListView
+            android:id="@+id/ac_search_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    <jfj.homeofcars.View.ProgressWebView
+        android:id="@+id/ac_search_webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </jfj.homeofcars.View.ProgressWebView>
+
+
+
+</LinearLayout>

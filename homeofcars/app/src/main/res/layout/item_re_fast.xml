@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="@dimen/fra_re_yc_img_bg_margin"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fra_re_fast_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fra_re_yc_text_margin"
+        android:text="标题"
+        android:textColor="@color/fra_re_yc_user_title_color"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/fra_re_fast_img_bg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/fra_re_fast_play_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/fra_re_yc_text_margin"
+            android:text="播放中"
+            android:textSize="@dimen/fra_re_yc_text_size"/>
+
+        <TextView
+            android:id="@+id/fra_re_fast_play_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/fra_re_yc_text_margin"
+            android:layout_weight="1"
+            android:text="00观众"
+            android:textSize="@dimen/fra_re_yc_text_size"/>
+
+        <TextView
+            android:id="@+id/fra_re_fast_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00-00"
+            android:textSize="@dimen/fra_re_yc_text_size"/>
+    </LinearLayout>
+</LinearLayout>

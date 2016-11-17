@@ -52,5 +52,16 @@
     <!--搜索界面-->
     <string name="ac_search_delete_btn">取消</string>
     <string name="ac_search_hint">搜索关键词</string>
+    <string name="ac_search_history">搜索历史</string>
+    <string name="ac_search_delete">清除</string>
+    <!--论坛精选-->
+    <string name="fra_choose_forum_recommend">精选推荐</string>
+    <string name="fra_choose_forum_all">全部</string>
+    <string name="fra_choose_forum_24">24小时热帖</string>
+    <string name="fra_choose_forum_history">浏览过的论坛</string>
+    <!--选车-->
+    <string name="fra_select_new_hot">热门品牌</string>
+
+
 
 </resources>

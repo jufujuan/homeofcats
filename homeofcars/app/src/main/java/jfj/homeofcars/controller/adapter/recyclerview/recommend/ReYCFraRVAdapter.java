@@ -9,6 +9,11 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView.ScaleType;
 
+import com.youth.banner.BannerConfig;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import jfj.homeofcars.R;
 import jfj.homeofcars.Utils.CommonViewHolder;
 import jfj.homeofcars.model.bean.ReYCBean;
@@ -22,6 +27,8 @@ public class ReYCFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     private Context mContext;
     private final static int TYPE_V=3;//带视频大图
     private final static int TYPE_SMALL=1;//主编有话要说
+
+    private final static int TYPE_HEADER=100;//头布局
 
 
     public ReYCFraRVAdapter(Context context) {
@@ -42,7 +49,11 @@ public class ReYCFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
      */
     @Override
     public int getItemViewType(int position) {
-        return datas.getResult().getNewslist().get(position).getMediatype();
+        if (position==0){
+            return TYPE_HEADER;
+        }else {
+            return datas.getResult().getNewslist().get(position).getMediatype();
+        }
     }
 
     /**
@@ -83,6 +94,9 @@ public class ReYCFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     @Override
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case TYPE_HEADER://头布局
+                CommonViewHolder headerVH = CommonViewHolder.getViewHolder(parent, R.layout.item_recycler_header_view);
+                return headerVH;
             case TYPE_V://带视频大图
                 CommonViewHolder flovarVH = CommonViewHolder.getViewHolder(parent, R.layout.item_re_yc_big_v);
                 return flovarVH;
@@ -99,6 +113,13 @@ public class ReYCFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
     @Override
     public void onBindViewHolder(final CommonViewHolder holder, final int position) {
         switch (getItemViewType(position)) {
+            case TYPE_HEADER:
+                List<String> imgUrls = new ArrayList<>();
+                for (int i = 0; i < datas.getResult().getFocusimgs().size(); i++) {
+                    imgUrls.add(datas.getResult().getFocusimgs().get(i).getImgurl());
+                }
+                holder.setBanner(R.id.item_recyclerview_header_banner, BannerConfig.CENTER, 3000, BannerConfig.CIRCLE_INDICATOR, imgUrls);
+                break;
             case TYPE_V://带视频大图
                 holder.setImg(R.id.fra_re_yc_user_img,datas.getResult().getNewslist().get(position).getUserpic(),2000,2000, ScaleType.FIT_XY, Config.ARGB_8888);
                 holder.setText(R.id.fra_re_yc_user_name,datas.getResult().getNewslist().get(position).getUsername());

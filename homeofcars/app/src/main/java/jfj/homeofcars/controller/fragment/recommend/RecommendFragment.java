@@ -86,6 +86,7 @@ public class RecommendFragment extends AbsBaseFragment implements OnClickListene
         } else {
             SharedPreferencesUtil.putIntListValue(mContext, SP_RECOMMEND_LIST,types);
         }
+        //这里是更换type的重要逻辑
         chageTab();
 
         mViewpagerAdapter.setFragments(mFragments);
@@ -95,9 +96,8 @@ public class RecommendFragment extends AbsBaseFragment implements OnClickListene
         moreImg.setOnClickListener(this);
         searchImg.setOnClickListener(this);
     }
-
+    //这里是更换type的重要逻辑
     private void chageTab() {
-        //这里是更换type的重要逻辑
         for (int i = 0; i < 13; i++) {
             switch (types.get(i)){
                 case TYPE_RECOMMEND:

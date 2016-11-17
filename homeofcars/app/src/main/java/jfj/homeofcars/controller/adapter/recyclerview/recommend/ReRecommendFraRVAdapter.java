@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView.ScaleType;
 
+import com.youth.banner.BannerConfig;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class ReRecommendFraRVAdapter extends RecyclerView.Adapter<CommonViewHold
     private final static int TYPE_THREE_PICTURE=6;//三个图
     private final static int TYPE_FORUM=5;//论坛
 
+    private final static int TYPE_HEADER=100;//头布局
+
 
     public ReRecommendFraRVAdapter(Context context) {
         mContext = context;
@@ -48,7 +52,12 @@ public class ReRecommendFraRVAdapter extends RecyclerView.Adapter<CommonViewHold
      */
     @Override
     public int getItemViewType(int position) {
-        return datas.getResult().getNewslist().get(position).getMediatype();
+        if (position==0){
+            return TYPE_HEADER;
+        }else{
+            return datas.getResult().getNewslist().get(position).getMediatype();
+        }
+
     }
 
     /**
@@ -89,6 +98,9 @@ public class ReRecommendFraRVAdapter extends RecyclerView.Adapter<CommonViewHold
     @Override
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case  TYPE_HEADER:
+                CommonViewHolder headerVH=CommonViewHolder.getViewHolder(parent,R.layout.item_recycler_header_view);
+                return headerVH;
             case TYPE_FLOVAR://花边
                 CommonViewHolder flovarVH = CommonViewHolder.getViewHolder(parent, R.layout.item_re_flovar);
                 return flovarVH;
@@ -114,6 +126,13 @@ public class ReRecommendFraRVAdapter extends RecyclerView.Adapter<CommonViewHold
     @Override
     public void onBindViewHolder(final CommonViewHolder holder, final int position) {
         switch (getItemViewType(position)) {
+            case TYPE_HEADER://头布局
+                List<String> imgUrls=new ArrayList<>();
+                for (int i = 0; i < datas.getResult().getFocusimg().size(); i++) {
+                    imgUrls.add(datas.getResult().getFocusimg().get(i).getImgurl());
+                }
+                holder.setBanner(R.id.item_recyclerview_header_banner, BannerConfig.RIGHT,3000,BannerConfig.CIRCLE_INDICATOR,imgUrls);
+                break;
             case TYPE_FLOVAR://花边
                 holder.setText(R.id.item_re_flovar_title,datas.getResult().getNewslist().get(position).getTitle());
                 holder.setText(R.id.item_re_flovar_play_count,datas.getResult().getNewslist().get(position).getReplycount()+"播放");
@@ -180,6 +199,7 @@ public class ReRecommendFraRVAdapter extends RecyclerView.Adapter<CommonViewHold
          imgUrls.add(imgurl);
          return imgUrls;
      }
+
 
 
 }

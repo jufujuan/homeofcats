@@ -49,12 +49,37 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line_color"/>
+    <LinearLayout
+        android:padding="@dimen/ac_search_margin"
+        android:gravity="center_vertical"
+        android:id="@+id/ac_search_history_ll"
+        android:orientation="horizontal"
+        android:background="@color/bg_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ac_search_history"
+            android:id="@+id/ac_search_history_title"/>
+        <TextView
+            android:text="@string/ac_search_delete"
+            android:id="@+id/ac_search_history_delete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@mipmap/ahlib_close_p"
+            android:id="@+id/ac_search_history_delete_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-        <ListView
-            android:id="@+id/ac_search_listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ListView>
+    <ListView
+        android:id="@+id/ac_search_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
 
     <jfj.homeofcars.View.ProgressWebView
         android:id="@+id/ac_search_webview"
@@ -63,7 +88,6 @@
         android:layout_weight="1">
 
     </jfj.homeofcars.View.ProgressWebView>
-
 
 
 </LinearLayout>

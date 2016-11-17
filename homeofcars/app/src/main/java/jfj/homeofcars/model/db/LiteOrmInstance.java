@@ -1,6 +1,7 @@
 package jfj.homeofcars.model.db;
 
 import com.litesuits.orm.LiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
 
 import java.util.List;
 
@@ -176,9 +177,9 @@ public class LiteOrmInstance {
      * @param value
      * @return
      */
-//    public <T> List<T> getQueryByWhere(Class<T> cla, String field, String[] value) {
-//        return mLiteOrm.<T>query(new QueryBuilder(cla).where(field + "=?", value));
-//    }
+    public <T> List<T> getQueryByWhere(Class<T> cla, String field, String[] value) {
+        return mLiteOrm.<T>query(new QueryBuilder(cla).where(field + "=?", value));
+    }
 
     /**
      * 查询  某字段 等于 Value的值  可以指定从1-20，就是分页

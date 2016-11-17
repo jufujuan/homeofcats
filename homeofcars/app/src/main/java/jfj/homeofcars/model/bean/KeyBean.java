@@ -1,10 +1,16 @@
 package jfj.homeofcars.model.bean;
 
+import com.litesuits.orm.db.annotation.Column;
+import com.litesuits.orm.db.annotation.PrimaryKey;
+import com.litesuits.orm.db.annotation.Table;
+import com.litesuits.orm.db.enums.AssignType;
+
 import java.util.List;
 
 /**
  *搜索界面关键字的实体类
  */
+
 public class KeyBean {
 
     /**
@@ -12,7 +18,6 @@ public class KeyBean {
      * message :
      * result : {"pageindex":1,"pagesize":0,"pagecount":1,"rowcount":10,"wordlist":[{"id":0,"name":"奥迪"},{"id":370,"name":"奥迪A3(进口)"},{"id":3554,"name":"昂科威"},{"id":18,"name":"奥迪A6L"},{"id":692,"name":"奥迪A4L"},{"id":3154,"name":"阿特兹"},{"id":3405,"name":"艾瑞泽5"},{"id":812,"name":"奥迪Q5"},{"id":3170,"name":"奥迪A3"},{"id":2951,"name":"奥迪Q3"}]}
      */
-
     private int returncode;
     private String message;
     /**
@@ -48,7 +53,6 @@ public class KeyBean {
     public void setResult(ResultBean result) {
         this.result = result;
     }
-
     public static class ResultBean {
         private int pageindex;
         private int pagesize;
@@ -100,9 +104,11 @@ public class KeyBean {
         public void setWordlist(List<WordlistBean> wordlist) {
             this.wordlist = wordlist;
         }
-
+        @Table("key_list")
         public static class WordlistBean {
+            @PrimaryKey(AssignType.AUTO_INCREMENT)//自己设置主键
             private int id;
+            @Column("name")
             private String name;
 
             public int getId() {

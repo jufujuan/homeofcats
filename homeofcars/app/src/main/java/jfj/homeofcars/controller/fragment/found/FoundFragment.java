@@ -135,24 +135,21 @@ public class FoundFragment extends AbsBaseFragment {
                     type=1;
                     break;
                 case 2:
-                    type=2;
-                    break;
-                case 3:
                     type=4;
                     break;
-                case 4:
+                case 3:
                     type=5;
                     break;
-                case 5:
+                case 4:
                     type=6;
+                    break;
+                case 5:
+                    type=7;
                     break;
                 case 6:
                     type=7;
                     break;
                 case 7:
-                    type=7;
-                    break;
-                case 8:
                     type=8;
                     break;
 

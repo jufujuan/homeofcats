@@ -87,9 +87,6 @@ public class ReMoreActivity extends AbsBaseActivity implements OnClickListener {
              * 用于设置是否拖拽事件和滑动事件,以及拖拽和滑动操作的方向
              * 1.如果是列表类型的recyclerview,拖动的只有up,down方向
              * 2.如果是网络类型的则有UP,DOWN,LEFT,RIGHT四个方向
-             * @param recyclerView
-             * @param viewHolder
-             * @return
              */
             @Override
             public int getMovementFlags(RecyclerView recyclerView, ViewHolder viewHolder) {

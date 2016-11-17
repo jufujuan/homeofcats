@@ -63,20 +63,6 @@ public class VolleyInstance {
         });
         queue.add(stringRequest);
     }
-//    public void startRequest(String url, final int postion, final VolleyPositionResult result){
-//        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                result.success(response,postion);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                result.failure();
-//            }
-//        });
-//        queue.add(stringRequest);
-//    }
     public void starImageRequest(String url, int maxWidth, int maxHeight, ImageView.ScaleType scaleType, Bitmap.Config config,final VolleyImageResult result){
         ImageRequest imageRequest=new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override

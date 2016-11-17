@@ -8,6 +8,7 @@
     <color name="line_color">#e6e6e6</color>
     <color name="bg_color">#edecec</color>
     <color name="item_bg_color">#ffffff</color>
+    <color name="item_tab_color">#060606</color>
     <!--一级界面"我"-->
     <color name="fra_mine_bg_color">#edecec</color>
     <color name="fra_mine_item_bg_color">#ffffff</color>

@@ -87,7 +87,7 @@ public final class MyNetUrlSet {
     public static final String NEWCAR_BRAND_URL = "http://223.99.255.20/cars.app.autohome.com.cn/cars_v5.7.0/cars/brands-pm2-ts635966571635589297.json";
     public static final String OLDCAR_DL_URL = "http://m.che168.com/dalian/list/?sourcename=mainapp&safe=0&carsafe=1&pvareaid=102254";
     //http://183.232.160.141/adnewnc.app.autohome.com.cn/advert_v7.0.0/ad/infoad.ashx?pageid=cee6fa23-52bc-4547-9ae9-ab0bc02d36d8&cityid=0&mac=74%3Aac%3A5f%3A6d%3A3c%3A93&networkid=0&appid=2&idfa=0&devicebrand=360&deviceid=860954030358581&lng=121.550946&devicemodel=1501_M02&platform=2&adtype=1&gps_city=210200&version=7.0.7&isretry=0&provinceid=210000&lat=38.889732   主打车
-    //http://183.232.160.141/cars.app.autohome.com.cn/dealer_v6.0.0/dealer/hotbrands-pm2.json      第三页热门品牌
+    public static final String URL_HOT_CAR="http://183.232.160.141/cars.app.autohome.com.cn/dealer_v6.0.0/dealer/hotbrands-pm2.json";//      第三页热门品牌
     public static final String HOTBRAND_URL = "http://183.232.160.141/cars.app.autohome.com.cn/dealer_v6.0.0/dealer/hotbrands-pm2.json";
 
     public static final String MAINCAR_URL = "http://183.232.160.141/adnewnc.app.autohome.com.cn/advert_v7.0.0/ad/infoad.ashx?pageid=cee6fa23-52bc-4547-9ae9-ab0bc02d36d8&cityid=0&mac=74%3Aac%3A5f%3A6d%3A3c%3A93&networkid=0&appid=2&idfa=0&devicebrand=360&deviceid=860954030358581&lng=121.550946&devicemodel=1501_M02&platform=2&adtype=1&gps_city=210200&version=7.0.7&isretry=0&provinceid=210000&lat=38.889732";
@@ -124,6 +124,7 @@ public final class MyNetUrlSet {
     public static final String URL_STR_SEARCH="http://sou.m.autohome.com.cn/h5/1.1/search.html?type=0&keyword=替换字符串&night=0&bbsid=0&lng=121.550912&lat=38.889734&nettype=5&netprovider=0";
     //关键字搜索
     public static final String URL_KEY_SEARCH="http://mobilenc.app.autohome.com.cn/sou_v5.7.0/sou/suggestwords.ashx?pm=2&k=替换字符串&t=4";
-
+    //论坛的精选
+    public  static final String URL_FORUM_CHOOSE="http://app.api.autohome.com.cn/autov4.8.8/club/jingxuantopic-pm1-c0-p1-s30.json";
 
 }

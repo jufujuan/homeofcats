@@ -16,15 +16,17 @@ public class ProgressWebView extends WebView{
 
     public ProgressWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        //设置水平进度条
         progressbar = new ProgressBar(context, null,
                 android.R.attr.progressBarStyleHorizontal);
+        //设置宽高和起始的横纵坐标
         progressbar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-                10, 0, 0));
+                5, 0, 0));
 
         Drawable drawable = context.getResources().getDrawable(R.drawable.progress_bar_states);
         progressbar.setProgressDrawable(drawable);
+        //动态加载进度条
         addView(progressbar);
-        // setWebViewClient(new WebViewClient(){});
         setWebChromeClient(new WebChromeClient());
         //是否可以缩放
         getSettings().setSupportZoom(true);

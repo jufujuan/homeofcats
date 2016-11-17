@@ -246,6 +246,8 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
                 timeItemRVAdapter.setDatas(datas.getResult().getCardlist().get(position).getData());
                 holder.setRecyclerViewH(mContext, 1, R.id.item_found_time_rv, timeItemRVAdapter);
                 break;
+            default:
+                break;
         }
     }
 
@@ -274,7 +276,6 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         count = end.get(2) * 24 * 60 * 60 + end.get(3) * 60 * 60 + end.get(4) * 60 + end.get(5);
         return count;
     }
-
     /**
      * 对时间进行处理(限时抢购)
      * 用来获取剩余时间
@@ -311,7 +312,6 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         }
         return time;
     }
-
     public List<Integer> getLeastTime(int endTimeCount) {
         List<Integer> time = new ArrayList<>();//用来存储日,时,分,秒
         //获得当前的时间
@@ -344,12 +344,8 @@ public class FoundFraRVAdapter extends RecyclerView.Adapter<CommonViewHolder> {
         }
         return time;
     }
-
     /**
      * 将yyy-MM-dd HH:mm:ss这种格式的转化成int的数组
-     *
-     * @param timeStr
-     * @return
      */
     public List<Integer> timeChangeStrToInt(String timeStr) {
         StringBuffer buffer = new StringBuffer(timeStr);

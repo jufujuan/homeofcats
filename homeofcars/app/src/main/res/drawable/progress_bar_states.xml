@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--层叠-->
+<!-- LayerDrawable 管理一组drawable，
+每个drawable都处于不同的层，
+当它们被绘制的时候，
+按照顺序全部都绘制到画布上。
+虽然这些drawable会有交差或者重叠的区域，
+但是它们是位于不同的层，彼此之间不会影响。-->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="2dp" />
-
             <gradient
                 android:angle="270"
                 android:centerColor="#E3E3E3"
@@ -16,11 +21,10 @@
         <clip>
             <shape>
                 <corners android:radius="2dp" />
-
                 <gradient
-                    android:centerColor="#4AEA2F"
-                    android:endColor="#31CE15"
-                    android:startColor="#5FEC46" />
+                    android:centerColor="#0675f4"
+                    android:endColor="#0651ba"
+                    android:startColor="#06aaf1" />
             </shape>
         </clip>
     </item>
